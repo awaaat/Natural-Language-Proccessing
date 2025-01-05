@@ -12,11 +12,21 @@ Usage:
 """
 import string
 import urllib
-
-def read_online_text_data(url):
-
-
+import urllib.request
 from nltk.tokenize import TreebankWordDetokenizer
+
+def read_online_text_data(text_url):
+    """
+    Reads text data from an online resource.
+    
+    Args:
+        url (str): The URL linking to the text data.
+    Returns:
+        str: The content of the text data as a string.
+    """
+    with urllib.request.urlopen(url = text_url) as f:
+        return f.read().decode('ISO-8859-1')
+
 def remove_punctuations(col):
     """
     Remove all punctuation characters from the input string.
